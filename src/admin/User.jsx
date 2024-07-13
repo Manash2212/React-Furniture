@@ -9,13 +9,13 @@ import { db } from "../firebase.config";
 import { doc, deleteDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
-const AllProducts = () => {
-  const { data: productsData, loading } = useGetData("products");
+const User = () => {
+  const { data: usersData, loading } = useGetData("users");
   // console.log(productsData);
 
   const deleteProduct = async (id) => {
-    await deleteDoc(doc(db, "products", id));
-    toast.success("Item deleted successfully");
+    await deleteDoc(doc(db, "users", id));
+    toast.success("User deleted successfully");
   };
 
   return (
@@ -31,13 +31,10 @@ const AllProducts = () => {
                   Image
                 </th>
                 <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Title
+                  Username
                 </th>
                 <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Category
-                </th>
-                <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Price
+                  Email
                 </th>
                 <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Action
@@ -45,9 +42,9 @@ const AllProducts = () => {
               </tr>
             </thead>
             <tbody>
-              {productsData.map((item, index) => (
+              {usersData.map((user_i, index) => (
                 <motion.tr
-                  key={index}
+                  key={user_i.uid}
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 1, delay: index * 0.1 }}
@@ -55,24 +52,22 @@ const AllProducts = () => {
                 >
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     <img
-                      src={item.imgUrl}
-                      alt="sofa"
-                      className="max-w-[80px] object-cover "
+                      src={user_i.photoURL}
+                      alt="user"
+                      className="max-w-[80px] max-h-[100px] object-cover "
                     />
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm ">
-                    {item.title}
+                    {user_i.displayName}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {item.category}
+                    {user_i.email}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    ₹ {item.price}
-                  </td>
+
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <button
                       onClick={() => {
-                        deleteProduct(item.id);
+                        deleteProduct(user_i.uid);
                       }}
                       className="px-2 py-1 bg-red-600 text-white font-medium rounded-md"
                     >
@@ -89,4 +84,4 @@ const AllProducts = () => {
   );
 };
 
-export default AllProducts;
+export default User;

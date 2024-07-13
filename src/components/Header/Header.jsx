@@ -170,11 +170,7 @@ const Header = () => {
               variants={mid_Sec}
               initial="hidden"
               animate="visible"
-              src={
-                currentUser && currentUser.photoUrl
-                  ? currentUser.photoUrl
-                  : User_Icon
-              }
+              src={currentUser ? currentUser.photoURL : User_Icon}
               alt="u-icon"
               className="w-[30px] cursor-pointer"
             />

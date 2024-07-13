@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 // Importing images
-import Logo from "../assets/images/eco-logo.png";
 import User_Icon from "../assets/images/user-icon.png";
+// importing React Icons
 import { IoIosNotifications } from "react-icons/io";
 import { IoIosSettings } from "react-icons/io";
 import useAuth from "../custom-hook/useAuth";
@@ -91,7 +91,7 @@ const AdminNav = () => {
                 // src={User_Icon}
                 src={
                   currentUser && currentUser.photoUrl
-                    ? currentUser.photoUrl
+                    ? currentUser.photoURL
                     : User_Icon
                 }
                 alt="u-icon"

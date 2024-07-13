@@ -41,25 +41,52 @@ const Signup = () => {
       const storageRef = ref(storage, `images/${Date.now() + username}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
+      // uploadTask.on(
+      //   (error) => {
+      //     toast.error(error.message);
+      //   },
+      //   () => {
+      //     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+      //       // update user Profile
+      //       await updateProfile(user, {
+      //         displayName: username,
+      //         photoURL: downloadURL,
+      //       });
+      //       // store userData in firestore database
+      //       await setDoc(doc(db, "user", user.uid), {
+      //         uid: user.uid,
+      //         displayName: username,
+      //         email,
+      //         photoURL: downloadURL,
+      //       });
+      //     });
+      //   }
+      // );
       uploadTask.on(
+        "state_changed", // State change observer, you can leave it null if not needed
+        null,
         (error) => {
           toast.error(error.message);
+          setLoading(false);
         },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            // update user Profile
-            await updateProfile(user, {
-              displayName: username,
-              photoURL: downloadURL,
-            });
-            // store userData in firestore database
-            await setDoc(doc(db, "user", user.uid), {
-              uid: user.uid,
-              displayName: username,
-              email,
-              photoURL: downloadURL,
-            });
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          // update user Profile
+          await updateProfile(user, {
+            displayName: username,
+            photoURL: downloadURL,
           });
+          // store userData in firestore database
+          await setDoc(doc(db, "users", user.uid), {
+            uid: user.uid,
+            displayName: username,
+            email,
+            photoURL: downloadURL,
+          });
+
+          setLoading(false);
+          toast.success("Account created successfully");
+          navigate("/login");
         }
       );
       setLoading(false);
@@ -119,7 +146,7 @@ const Signup = () => {
                 <input
                   type="file"
                   className="border-2 border-gray-400 outline-none text-white  rounded-md mt-2 px-2 py-1"
-                  onChange={(e) => setFile(e.target.file[0])}
+                  onChange={(e) => setFile(e.target.files[0])}
                 />
               </div>
               <motion.div className="log text-center">

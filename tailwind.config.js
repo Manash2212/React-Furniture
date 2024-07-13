@@ -7,7 +7,6 @@ module.exports = {
       secondary: "Roboto",
       style: "Britney",
     },
-
     screens: {
       sm: "640px",
       md: "768px",
