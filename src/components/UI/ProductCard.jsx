@@ -33,7 +33,7 @@ const ProductCard = ({ item }) => {
               <motion.img
                 src={item.imgUrl}
                 alt="trending_product"
-                className="w-full object-contain h-full "
+                className="w-full object-cover h-full "
                 whileHover={{ scale: 0.9 }}
               />
             </div>

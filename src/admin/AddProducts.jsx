@@ -48,14 +48,17 @@ const AddProducts = () => {
       const uploadTask = uploadBytesResumable(storageRef, enterProductImg);
 
       uploadTask.on(
-        () => {
-          toast.error("Image can not be uploaded");
+        "state_changed",
+        null,
+        (error) => {
+          toast.error("Image upload failed");
+          setLoading(false);
         },
         async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
           try {
-            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
             await addDoc(collection(db, "products"), {
-              title: enterTitle,
+              productName: enterTitle,
               shortDesc: enterShortDesc,
               description: enterDescription,
               price: enterPrice,
@@ -64,7 +67,7 @@ const AddProducts = () => {
             });
             toast.success("Product added successfully");
             resetForm();
-            navigate("/dashboard/all-products");
+            // navigate("/dashboard/all-products");
           } catch (e) {
             console.error("Error adding document: ", e);
             toast.info("Wait adding product");
@@ -154,15 +157,20 @@ const AddProducts = () => {
                       Category
                     </label>
                     <select
-                      className="px-4 border-2 border-gray-400  rounded-md outline-none py-1"
+                      className="px-4 border-2 border-gray-400  rounded-md outline-none py-1 font-semibold"
                       value={enterCategory}
                       onChange={(e) => setEnterCategory(e.target.value)}
                       required
                     >
+                      <option className="rounded-md font-medium ">
+                        select_
+                      </option>
                       <option className="rounded-md font-medium">Chair</option>
                       <option className="rounded-md font-medium">Sofa</option>
-                      <option className="rounded-md font-medium">Mobile</option>
-                      <option className="rounded-md font-medium">Watch</option>
+                      <option className="rounded-md font-medium">
+                        Dining Table
+                      </option>
+                      <option className="rounded-md font-medium">Bed</option>
                     </select>
                   </div>
                 </div>

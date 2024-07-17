@@ -57,11 +57,11 @@ const AllProducts = () => {
                     <img
                       src={item.imgUrl}
                       alt="sofa"
-                      className="max-w-[80px] object-cover "
+                      className="max-w-[80px] h-[90px] object-contain "
                     />
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm ">
-                    {item.title}
+                    {item.productName}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {item.category}

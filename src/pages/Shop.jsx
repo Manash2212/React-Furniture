@@ -1,24 +1,32 @@
 import CommonSection from "../components/UI/CommonSection";
 import { IoSearch } from "react-icons/io5";
-import products from "../assets/data/products";
-import { useState } from "react";
+// import products from "../assets/data/products";
+import { useEffect, useState } from "react";
 import ProductList from "../components/UI/ProductList";
+import useGetData from "../custom-hook/useGetData";
+import LoadingDots from "../components/Loading/LoadingDots";
 
 const Shop = () => {
-  const [productsData, setProductsData] = useState(products);
+  const { data: products, loading } = useGetData("products");
+  // console.log(products.length);
+  const [productsData, setProductsData] = useState([]);
+  useEffect(() => {
+    setProductsData(products);
+  }, [products]);
+  console.log(productsData.length);
 
   // For Filter the data with their category name in select option
   const handleFilterd = (e) => {
     const filterData = e.target.value;
-    if (filterData === "sofa") {
+    if (filterData === "Sofa") {
       const filterProducts = products.filter(
-        (item) => item.category === "sofa"
+        (item) => item.category === "Sofa"
       );
       setProductsData(filterProducts);
     }
-    if (filterData === "mobile") {
+    if (filterData === "Dining Table") {
       const filterProducts = products.filter(
-        (item) => item.category === "mobile"
+        (item) => item.category === "Dining Table"
       );
       setProductsData(filterProducts);
     }
@@ -28,16 +36,8 @@ const Shop = () => {
       );
       setProductsData(filterProducts);
     }
-    if (filterData === "watch") {
-      const filterProducts = products.filter(
-        (item) => item.category === "watch"
-      );
-      setProductsData(filterProducts);
-    }
-    if (filterData === "wireless") {
-      const filterProducts = products.filter(
-        (item) => item.category === "wireless"
-      );
+    if (filterData === "Bed") {
+      const filterProducts = products.filter((item) => item.category === "Bed");
       setProductsData(filterProducts);
     }
   };
@@ -65,11 +65,10 @@ const Shop = () => {
                 className="bg-slate-800 text-white py-1 px-2 max-sm:px-1 rounded-md max-sm:text-[15px]"
               >
                 <option>Filter By Category</option>
-                <option value="sofa">Sofa</option>
-                <option value="mobile">Mobile</option>
+                <option value="Sofa">Sofa</option>
                 <option value="chair">Chair</option>
-                <option value="watch">Watch</option>
-                <option value="wireless">Wireless</option>
+                <option value="Dining Table">Dining Table</option>
+                <option value="Bed">Bed</option>
               </select>
             </div>
             <div className="item2 flex-1 max-md:justify-center max-sm:items-center ">
@@ -95,11 +94,7 @@ const Shop = () => {
         {/* If matches the option then show the productList */}
         <div className="productList">
           {productsData.length === 0 ? (
-            <div className="flex items-center justify-center my-16">
-              <h1 className=" text-2xl ">
-                Sorry Can not find any product with this name
-              </h1>
-            </div>
+            <LoadingDots />
           ) : (
             <ProductList data={productsData} />
           )}

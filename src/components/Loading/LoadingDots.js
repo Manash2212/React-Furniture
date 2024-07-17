@@ -3,7 +3,7 @@ import React from "react";
 
 const LoadingDots = () => {
   return (
-    <div className="flex space-x-2 justify-center items-center">
+    <div className="flex space-x-2 justify-center items-center min-h-[20vh]">
       <div
         className="bg-blue-500 rounded-full h-3 w-3 animate-bounce"
         style={{ animationDelay: "0s" }}

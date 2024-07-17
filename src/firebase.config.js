@@ -3,17 +3,18 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCYqNnydpbXrmVrQ2aDL5mI9WoVrYzYIGQ",
-  authDomain: "multimart-21002.firebaseapp.com",
-  projectId: "multimart-21002",
-  storageBucket: "multimart-21002.appspot.com",
-  messagingSenderId: "725172789100",
-  appId: "1:725172789100:web:f71f5196f9d6af42f19d49",
+  apiKey: "AIzaSyDL29oDb1QAJ4ztCpHkhzw-g8Ns03M6b3s",
+  authDomain: "furniture-mart-e684d.firebaseapp.com",
+  projectId: "furniture-mart-e684d",
+  storageBucket: "furniture-mart-e684d.appspot.com",
+  messagingSenderId: "566288544811",
+  appId: "1:566288544811:web:a569b96227a26fb36aa66e",
 };
 
 // Initialize Firebase
