@@ -19,7 +19,7 @@ const Home = () => {
   useEffect(() => {
     if (products.length > 0 && !isDataFetched) {
       const filteredTrendingProducts = products.filter(
-        (item) => item.category === "chair"
+        (item) => item.category === "Chair"
       );
       setTrendingProducts(filteredTrendingProducts);
 

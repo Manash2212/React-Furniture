@@ -47,7 +47,7 @@ const ProductDetails = () => {
         id,
         productName,
         price,
-        image: imgUrl,
+        imgUrl,
       })
     );
     toast.success("Product added successfully");
@@ -71,7 +71,7 @@ const ProductDetails = () => {
         <CommonSection title={productName} />
         <div className="product_details max-w-[85vw] mx-auto">
           <div className=" flex  gap-4 max-md:gap-2 justify-around font-primary max-md:flex-col  mt-5">
-            <div className="p_img flex flex-1 max-w-[640px] max-h-[480px] max-md:max-h-[300px] max-sm:max-h-[280px] ">
+            <div className="p_img flex flex-1 max-w-[640px] max-h-[480px] max-md:max-h-[300px] max-sm:max-h-[280px] shadow-lg p-2 rounded-md">
               <img
                 src={imgUrl}
                 alt="product_img"

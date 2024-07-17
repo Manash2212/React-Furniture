@@ -14,7 +14,7 @@ const Cart = () => {
     <section className="min-w-full">
       <div className="container min-w-full ">
         <CommonSection title={"Shopping Cart"} />
-        <div className="content w-[90%] min-h-[50vh] mx-auto flex ">
+        <div className="content w-[90%] min-h-[50vh] mx-auto flex mt-5 ">
           {cartItems.length === 0 ? (
             <h2 className="text-center mx-auto text-2xl font-secondary flex items-center justify-center">
               No Items in cart

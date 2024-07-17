@@ -30,9 +30,9 @@ const Shop = () => {
       );
       setProductsData(filterProducts);
     }
-    if (filterData === "chair") {
+    if (filterData === "Chair") {
       const filterProducts = products.filter(
-        (item) => item.category === "chair"
+        (item) => item.category === "Chair"
       );
       setProductsData(filterProducts);
     }
@@ -66,7 +66,7 @@ const Shop = () => {
               >
                 <option>Filter By Category</option>
                 <option value="Sofa">Sofa</option>
-                <option value="chair">Chair</option>
+                <option value="Chair">Chair</option>
                 <option value="Dining Table">Dining Table</option>
                 <option value="Bed">Bed</option>
               </select>
