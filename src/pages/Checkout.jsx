@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import CommonSection from "../components/UI/CommonSection";
+import { easeIn, motion } from "framer-motion";
 
 const Checkout = () => {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
@@ -8,9 +9,14 @@ const Checkout = () => {
     <section className="min-w-full">
       <div className="container min-w-full font-primary">
         <CommonSection title="Checkout" />
-        <div className="billing_details w-[80%] mx-auto flex mt-7">
-          <div className="adrs_form max-w-[70%] w-full py-2 px-3">
-            <h3 className="text-xl font-bold font-primary underline">
+        <div className="billing_details w-[80%] mx-auto flex mt-7 max-md:flex-col">
+          <motion.div
+            className="adrs_form max-w-[70%] w-full py-2 px-3 max-md:max-w-full"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeIn" }}
+          >
+            <h3 className="text-xl font-bold font-primary underline max-sm:text-[16px] max-sm:tracking-wide">
               Enter a new delivery address
             </h3>
             <form action="">
@@ -59,35 +65,40 @@ const Checkout = () => {
                   placeholder="E.g. near xyz hospital"
                 />
               </div>
-              <div className="pincode-city flex items-center justify-between mt-4">
-                <div className="pin">
-                  <label className=" pr-2 text-sm font-medium">Pincode</label>
-                  <input
-                    type="text"
-                    className="border-2 border-gray-500 rounded-md px-2 py-1 outline-none"
-                    placeholder="6-digit Pincode"
-                  />
+              <div className="pincode-city flex items-center justify-between mt-4 max-md:flex-col max-md:items-start gap-4">
+                <div className="flex items-center gap-4 max-lg:flex-col max-md:w-full">
+                  <div className="pin max-md:w-full">
+                    <label className=" pr-2 text-sm font-medium">Pincode</label>
+                    <input
+                      type="text"
+                      className="border-2 border-gray-500 rounded-md px-2 py-1 outline-none max-md:w-full"
+                      placeholder="6-digit Pincode"
+                    />
+                  </div>
+                  <div className="city max-md:w-full">
+                    <label className=" pr-2 text-sm font-medium">
+                      Town/City
+                    </label>
+                    <input
+                      type="text"
+                      className="border-2 border-gray-500 rounded-md px-2 py-1 outline-none max-md:w-full"
+                    />
+                  </div>
                 </div>
-                <div className="city">
-                  <label className=" pr-2 text-sm font-medium">Town/City</label>
-                  <input
-                    type="text"
-                    className="border-2 border-gray-500 rounded-md px-2 py-1 outline-none"
-                  />
-                </div>
-                <div className="state">
+                <div className="state max-md:w-full">
                   <label className=" pr-2 text-sm font-medium">State</label>
                   <input
                     type="text"
-                    className="border-2 border-gray-500 rounded-md px-2 py-1 outline-none"
+                    className="border-2 border-gray-500 rounded-md px-2 py-1 outline-none max-md:w-full"
                     placeholder="E.g. near xyz hospital"
                   />
                 </div>
               </div>
               <div className="radio">
-                <input
+                <motion.input
                   type="checkbox"
                   className="border-2 border-gray-500 rounded-md px-2 py-1 outline-none mt-4 mr-2 "
+                  whileTap={{ scale: 1.1 }}
                 />
                 <span className="text-sm  text-gray-800 tracking-wide">
                   Make this my default address
@@ -96,14 +107,19 @@ const Checkout = () => {
               <div className="submitted">
                 <button
                   type="button"
-                  className=" bg-slate-800 text-white font-primary mt-4 px-4 py-1 rounded-md"
+                  className=" bg-slate-500 text-white font-primary mt-4 px-4 py-1 rounded-md"
                 >
                   Use this is delivery address
                 </button>
               </div>
             </form>
-          </div>
-          <div className="bl_info max-w-[30%]  w-full  text-white">
+          </motion.div>
+          <motion.div
+            className="bl_info max-w-[30%]  w-full  text-white max-md:max-w-full"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeIn" }}
+          >
             <div className="info px-5 py-5 bg-slate-800 flex flex-col gap-5 rounded-md">
               <div className="1 flex items-center justify-between">
                 <h2>Total Qty:</h2>
@@ -127,11 +143,11 @@ const Checkout = () => {
               </div>
               <div className="order w-full">
                 <button className="bg-white text-black w-full px-2 py-1 rounded-md text-lg font-medium">
-                  Place order
+                  Continue
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
