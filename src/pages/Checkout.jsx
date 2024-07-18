@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import CommonSection from "../components/UI/CommonSection";
-import { easeIn, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
@@ -142,9 +143,11 @@ const Checkout = () => {
                 <h4>₹ {totalAmount + 9}</h4>
               </div>
               <div className="order w-full">
-                <button className="bg-white text-black w-full px-2 py-1 rounded-md text-lg font-medium">
-                  Continue
-                </button>
+                <Link to={"/payment"}>
+                  <button className="bg-white text-black w-full px-2 py-1 rounded-md text-lg font-medium">
+                    Continue
+                  </button>
+                </Link>
               </div>
             </div>
           </motion.div>

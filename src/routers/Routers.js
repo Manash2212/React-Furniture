@@ -12,6 +12,7 @@ import Dashboard from "../admin/Dashboard";
 import AllProducts from "../admin/AllProducts";
 import AddProducts from "../admin/AddProducts";
 import User from "../admin/User";
+import Payment from "../pages/Payment";
 
 const Routers = () => {
   return (
@@ -22,6 +23,7 @@ const Routers = () => {
       <Route path="cart" element={<Cart />} />
       <Route path="/*" element={<ProtectedRoutes />}>
         <Route path="checkout" element={<Checkout />} />
+        <Route path="payment" element={<Payment />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="dashboard/all-products" element={<AllProducts />} />
         <Route path="dashboard/add-products" element={<AddProducts />} />
