@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { storage, db } from "../firebase.config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const AddProducts = () => {
   const [enterTitle, setEnterTitle] = useState("");
@@ -16,7 +16,7 @@ const AddProducts = () => {
   const [enterProductImg, setEnterProductImg] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const resetForm = () => {
     setEnterTitle("");
@@ -139,8 +139,8 @@ const AddProducts = () => {
                     className="border-2 border-gray-400  rounded-md outline-none py-1 px-4"
                   />
                 </div>
-                <div className="prc-catgr flex items-center justify-between gap-4">
-                  <div className="price flex flex-col flex-1">
+                <div className="prc-catgr flex items-center justify-between max-sm:flex-col max-sm:w-full my-3 gap-4">
+                  <div className="price flex flex-col flex-1 max-sm:w-full">
                     <label className="font-medium text-orange-500/90 pb-1">
                       Price
                     </label>
@@ -152,7 +152,7 @@ const AddProducts = () => {
                       className="border-2 border-gray-400  rounded-md outline-none py-1 px-4"
                     />
                   </div>
-                  <div className="Category flex flex-col flex-1">
+                  <div className="Category flex flex-col flex-1 max-sm:w-full">
                     <label className="font-medium text-orange-500/90 pb-1">
                       Category
                     </label>
