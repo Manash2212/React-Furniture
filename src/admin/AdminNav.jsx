@@ -76,7 +76,7 @@ const AdminNav = () => {
               variants={last_Sec}
               initial="hidden"
               animate="visible"
-              className="max-sm:visible"
+              className="max-sm:visible sm:hidden"
               onClick={() => setShowSearch(!showSearch)}
             >
               <CiSearch className="text-xl cursor-pointer" />
