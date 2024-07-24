@@ -6,6 +6,8 @@ import { IoIosNotifications } from "react-icons/io";
 import { IoIosSettings } from "react-icons/io";
 import useAuth from "../custom-hook/useAuth";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { CiSearch } from "react-icons/ci";
 
 const logo_name = {
   hidden: { scale: 0 },
@@ -36,10 +38,11 @@ const admin_nav = [
 ];
 
 const AdminNav = () => {
+  const [showSearch, setShowSearch] = useState(false);
   const { currentUser } = useAuth();
   return (
     <section className="w-full font-primary">
-      <div className="main-container bg-slate-600 text-white">
+      <div className="main-container bg-slate-600 text-white py-3">
         <div className="container max-w-[75%] mx-auto flex items-center justify-between py-4 ">
           <div className="left flex items-end justify-around cursor-pointer ">
             <div className="heading flex flex-col ">
@@ -53,8 +56,9 @@ const AdminNav = () => {
               </motion.h1>
             </div>
           </div>
+          {/* /Search input */}
           <motion.div
-            className="input w-[60%]   rounded-md"
+            className="input w-[60%]   rounded-md max-sm:hidden"
             variants={mid_Sec}
             initial="hidden"
             animate="visible"
@@ -62,10 +66,21 @@ const AdminNav = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="w-full py-1 px-2 rounded-md border-none outline-none bg-gray-100 text-black"
+              className="w-full py-1 px-2 rounded-md border-none outline-none bg-gray-100 text-black "
             />
           </motion.div>
-          <div className="prfl-nts-setng flex items-center justify-between gap-6 ">
+          {/* left Side ELements */}
+          <div className="prfl-nts-setng flex items-center justify-between gap-6 max-sm:gap-3 ">
+            <motion.div
+              whileTap={{ scale: 1.1 }}
+              variants={last_Sec}
+              initial="hidden"
+              animate="visible"
+              className="max-sm:visible"
+              onClick={() => setShowSearch(!showSearch)}
+            >
+              <CiSearch className="text-xl cursor-pointer" />
+            </motion.div>
             <motion.div
               whileTap={{ scale: 1.1 }}
               variants={last_Sec}
@@ -100,6 +115,21 @@ const AdminNav = () => {
             </div>
           </div>
         </div>
+        {/* Search Input --- If Screen Size max-sm:visible*/}
+        {showSearch && (
+          <motion.div
+            className="input w-[60%]   rounded-md max-sm:visible sm:hidden mx-auto"
+            variants={mid_Sec}
+            initial="hidden"
+            animate="visible"
+          >
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full py-1 px-2 rounded-md border-none outline-none bg-gray-100 text-black "
+            />
+          </motion.div>
+        )}
       </div>
       <div className="container2 bg-slate-400/60">
         <div className="items flex items-center justify-center h-[60px] ">

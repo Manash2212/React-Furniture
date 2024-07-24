@@ -88,7 +88,7 @@ const AddProducts = () => {
   return (
     <section className="w-full">
       <div className="container max-w-[65%] mx-auto ">
-        <div className="form-group">
+        <div className="form-group my-5">
           {loading ? (
             <div className="min-h-[60vh] mx-auto flex items-center justify-center">
               <h1 className="font-style font-bold text-2xl">
